@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Rock Paper Scissors!!</title>
+
+<!-- Bootstrap Core CSS -->
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom Fonts -->
+<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+<link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+
+<!-- Custom CSS -->
+<link href="css/stylish-portfolio.min.css" rel="stylesheet">
+
+
+<body id="page-top"  >
+
+<a class="menu-toggle rounded" href="#">
+    <i class="fas fa-bars"></i>
+</a>
+<nav id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+            <a class="js-scroll-trigger" href="#page-top">Start Bootstrap</a>
+        </li>
+        <li class="sidebar-nav-item">
+            <a class="js-scroll-trigger" href="#page-top">Home</a>
+        </li>
+        <li class="sidebar-nav-item">
+            <a class="js-scroll-trigger" href="#about">About</a>
+        </li>
+        <li class="sidebar-nav-item">
+            <a class="js-scroll-trigger" href="#services">Services</a>
+        </li>
+        <li class="sidebar-nav-item">
+            <a class="js-scroll-trigger" href="#portfolio">Portfolio</a>
+        </li>
+        <li class="sidebar-nav-item">
+            <a class="js-scroll-trigger" href="#contact">Contact</a>
+        </li>
+    </ul>
+</nav>
+
+<!-- Header -->
+<header class="masthead d-flex">
+    <div class="container text-center my-auto">
+        <h1 class="mb-1">Rock Paper Scissors</h1>
+        <h3 class="mb-5">
+            <em>Play game to see the chances you win</em>
+        </h3>
+
+        <input  class="btn btn-primary btn-xl js-scroll-trigger" type="text" value = "Display result here" id="resulttext">
+
+        <!--<a    class="btn btn-primary btn-xl js-scroll-trigger" href="#about"></a>-->
+    </div>
+    <div class="overlay"></div>
+</header>
+
+
+
+<input type="text" value = "Display result here" id="resulttext">
+    <script>
+        var userChoice = prompt("Do you choose rock, paper or scissors?");
+
+        //Asks for input
+        var computerChoice = Math.random();
+
+        //USe random function to get a random value and then based on that we assign the value to computetr
+        if (computerChoice <0.34){
+            computerChoice = "rock";
+        }else if(computerChoice <=0.67){
+            computerChoice = "paper";
+        }
+        else{
+            computerChoice = "scissors";
+        }
+
+        // Different conditions for the game based on users choice and generated computer o/p
+        var compare = function(choice1,choice2){
+            if(choice1===choice2){
+                return "The result is a tie!";
+            }
+            if(choice1==="rock"){
+                if(choice2==="scissors"){
+                    return "You win";
+                }
+                else{
+                    return "Computer Wins. You lose! ";
+                }
+            }
+            if(choice1==="paper"){
+                if(choice2==="rock"){
+                    return "You win";
+                }
+                else{
+                    return "Computer wins";
+                }
+            }
+            if(choice1==="scissors"){
+                if(choice2==="rock"){
+                    return "You wins";
+                }
+                else{
+                    return "Computer wins";
+                }
+            }
+        };
+
+        // Attach the result to element on screen buy using getElementById function
+         var result = (compare(userChoice,computerChoice));
+        document.getElementById("resulttext").value = result;
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
