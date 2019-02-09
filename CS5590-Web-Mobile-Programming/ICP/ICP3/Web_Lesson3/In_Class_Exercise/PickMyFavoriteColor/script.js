@@ -46,12 +46,14 @@ $(document).ready(function(){
 
     $('#add-to-favorite').click( function(){
         color = document.getElementById("color").value;
-        colors.push(color);
+        if (color != "") {
+            colors.push(color);
+        }
         $('#color').val("");
         $('#color').focus();
         // $( ".grid-container" ).append( "<div class="grid-item"></div>" );
         // after()
-        $(".grid-container" ).append(" <div class=\"grid-item\"></div>.");
+        $(".grid-container" ).append(" <div class=\"grid-item\"></div>");
 
         $( ".grid-item" ).last().css( "background-color", color );
 
@@ -66,5 +68,15 @@ $(document).ready(function(){
 
 
 //3.Write events handlers such that whenever any item in the favorite colors is clicked or hovered, the color gets displayed in the preview div
+    $(".grid-item").hover(function(){
+
+
+        var newcolor = this.style.backgroundColor;
+        setPreviewColor(newcolor);
+
+       // $(this).css("background-color", "yellow");
+    });
+
+
 
 });
