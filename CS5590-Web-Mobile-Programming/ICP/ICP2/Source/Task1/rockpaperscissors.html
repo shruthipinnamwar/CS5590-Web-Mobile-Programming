@@ -86,6 +86,8 @@
         // Different conditions for the game based on users choice and generated computer o/p
         var compare = function(choice1,choice2){
             if(choice1===choice2){
+
+                // var res = "COmputer "
                 return "The result is a tie!";
             }
             if(choice1==="rock"){
@@ -117,6 +119,7 @@
         // Attach the result to element on screen buy using getElementById function
          var result = (compare(userChoice,computerChoice));
         document.getElementById("resulttext").value = result;
+        console.log(choice2)
 
 </script>
 
