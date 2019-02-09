@@ -13,12 +13,16 @@ function addBox(color) {
 
 function clickFavButton(){
     var input = document.getElementById("color");
-
+// getting the value from input text box
     color = input;
+
+    // setting the color to the left div by passing the value
     setPreviewColor(color);
 }
 
 $(document).ready(function(){
+
+    $("h1").fadeIn();
 
     //1.As the page loads add each color in the colors array to the div '#colors'
     for( i = 0; i<colors.length;i++) {
@@ -47,14 +51,23 @@ $(document).ready(function(){
     $('#add-to-favorite').click( function(){
         color = document.getElementById("color").value;
         if (color != "") {
+
+            //adding to array
             colors.push(color);
+
         }
+
+        //clearing the input text
         $('#color').val("");
+
+        //setting back focus
         $('#color').focus();
         // $( ".grid-container" ).append( "<div class="grid-item"></div>" );
-        // after()
+
+        // adding the div tag to .grid container class
         $(".grid-container" ).append(" <div class=\"grid-item\"></div>");
 
+        // adding background color to the new div created
         $( ".grid-item" ).last().css( "background-color", color );
 
 
@@ -70,8 +83,11 @@ $(document).ready(function(){
 //3.Write events handlers such that whenever any item in the favorite colors is clicked or hovered, the color gets displayed in the preview div
     $(".grid-item").hover(function(){
 
-
+        // getting the color of the hovered item
         var newcolor = this.style.backgroundColor;
+
+        // setting the color to the left div
+
         setPreviewColor(newcolor);
 
        // $(this).css("background-color", "yellow");
