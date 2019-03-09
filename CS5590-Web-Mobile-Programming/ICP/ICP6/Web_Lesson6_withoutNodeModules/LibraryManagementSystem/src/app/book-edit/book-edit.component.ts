@@ -25,7 +25,11 @@ export class BookEditComponent implements OnInit {
 
  
   ngOnInit() {
+
+    
     this.bookForm = this.formBuilder.group({
+
+      this.getBookDetails(this.route.snapshot.params['id']);
       'isbn': [null, Validators.required],
       'title': [null, Validators.required],
       'description': [null, Validators.required],
@@ -33,6 +37,14 @@ export class BookEditComponent implements OnInit {
       'publisher': [null, Validators.required],
       'published_year': [null, Validators.required]
     });
+  }
+
+  getBookDetails(id) {
+    this.api.getBook(id)
+      .subscribe(data => {
+        console.log(data);
+        this.book = data;
+      });
   }
 
   onFormSubmit(form: NgForm) {
