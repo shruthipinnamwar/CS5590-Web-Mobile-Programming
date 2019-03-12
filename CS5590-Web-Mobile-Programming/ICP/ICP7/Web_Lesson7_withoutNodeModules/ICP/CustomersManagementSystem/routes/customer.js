@@ -26,10 +26,19 @@ router.post('/', function (req, res, next) {
   });
 });
 
-/* Update customer details */
+router.put('/:id', (req, res, next) => {
+  Customer.findByIdAndUpdate(req.params.id, req.body, (err, post) => {
+    if (err) return next(err);
+    res.json(post);
+  });
+});
 
-
-/* Delete customer record */
-
+/* DELETE BOOK */
+router.delete('/:id', (req, res, next) => {
+  Customer.findByIdAndRemove(req.params.id, req.body, (err, post) => {
+    if (err) return next(err);
+    res.json(post);
+  });
+});
 
 module.exports = router;
