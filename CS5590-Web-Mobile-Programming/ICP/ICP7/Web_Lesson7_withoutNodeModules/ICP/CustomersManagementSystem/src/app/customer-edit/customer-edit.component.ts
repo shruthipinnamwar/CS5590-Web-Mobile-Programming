@@ -27,13 +27,47 @@ export class CustomerEditComponent implements OnInit {
 
   ngOnInit() {
     this.getCustomer(this.route.snapshot.params['id']);
+    this.customerForm = this.formBuilder.group({
+      'firstName': [null, Validators.required],
+      'lastName': [null, Validators.required],
+      'gender': [null, Validators.required],
+      'birthday': [null, Validators.required],
+      'lastContact': [null, Validators.required],
+      'customerLifetimeValue': [null, Validators.required]
+    });
   }
 
   getCustomer(id) {
-    /*** Get the Customer Details*/
+    this.api.getCustomer(id).subscribe(data => {
+      this.id = data._id;
+      this.customerForm.setValue({
+        firstName: data.name.first,
+        lastName: data.name.last,
+        gender: data.gender,
+        birthday: data.birthday,
+        lastContact: data.lastContact,
+        customerLifetimeValue: data.customerLifetimeValue
+      });
+    });
   }
 
-  onFormSubmit() {
-    /*** On form submit update the customer details*/
+  // onReset(form: NgForm) {
+
+  onFormSubmit(form: NgForm) {
+
+      alert("erllo");
+    // onFormSubmit(customerForm.value)
+    this.api.updateCustomer(this.id, form)
+      .subscribe(res => {
+          let id = res['_id'];
+          this.router.navigate(['/customer-details', id]);
+        }, (err) => {
+          console.log(err);
+        }
+      );
+  }
+
+  customerDetails() {
+    this.router.navigate(['/customer-details', this.id]);
   }
 }
